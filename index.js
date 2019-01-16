@@ -4,6 +4,7 @@ const assert = require('assert');
 const isPlainObject = require('is-plain-object');
 const deasyncPromise = require('deasync-promise');
 const inquirer = require('inquirer');
+const webpack = require('webpack')
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = function (api, options = {}) {
@@ -31,7 +32,7 @@ module.exports = function (api, options = {}) {
   );
 
   log.warn(`
-[umi-plugin-mpa] 使用 mpa 插件，意味着我们只使用 umi 作为构建工具。所以：
+[umi-plugin-ssr] 使用 ssr 插件，意味着我们只使用 umi 作为构建工具。所以：
 
     1. 路由相关功能不工作
     2. global.css、global.js 无效
@@ -179,6 +180,15 @@ module.exports = function (api, options = {}) {
       .options({
         name: options.htmlName || '[name].[ext]',
       });
+
+    webpackConfig.target('async-node');
+    webpackConfig.output.libraryTarget('commonjs2');
+    console.log(webpackConfig)
+    // webpackConfig.plugins.push([
+    //   new webpack.DefinePlugin({
+    //     __isBrowser__: false
+    //   })
+    // ]);
 
     webpackConfig.output
       .chunkFilename(`[name].js`);

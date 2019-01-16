@@ -8,11 +8,34 @@ SSR(server-side render) plugin for umi.
 
 ## Why
 
-有一些基于 [atool-build](https://github.com/ant-tool/atool-build) 或者 [roadhog](https://github.com/sorrycc/roadhog) 的老业务，是传统的 MPA（多页应用），并且他们是真的多页，因为每个页面之间的关系不大，强行套 SPA（单页应用）的模式意义并不大，反而多了一些冗余的代码，比如路由。
+```
+const nodeExternals = require('webpack-node-externals')
+const paths = require('./paths')
 
-另外，atool-build 已停止维护。
+module.exports = merge(baseConfig, {
+  mode: 'production',
+  entry: {
+    app: './web/page/app/index.js'
+  },
+  target: 'async-node',
+  externals: nodeExternals({
+    whilelist: /\.(css|less|sass|scss)$/
+  }),
+  output: {
+    path: paths.appBuild,
+    publicPath: '/dist',
+    filename: '[name].js',
+    libraryTarget: 'commonjs2'
+  },
 
-所以，为了让这些老业务能更容易地升级上来，享受新的技术栈，我们提供了 umi-plugin-ssr 来支持多页应用，把 umi 单纯作为 webpack 封装工具来使用。同时，umi 的部分功能会不可用，比如路由、global.js、global.css、app.js 等。
+  plugins: [
+    new webpack.DefinePlugin({
+      __isBrowser__: false
+    })
+  ]
+})
+
+```
 
 ## Features
 
