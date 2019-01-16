@@ -31,16 +31,6 @@ module.exports = function (api, options = {}) {
     `options.selectEntry should be Boolean or Object, but got ${JSON.stringify(options.selectEntry)}`,
   );
 
-  log.warn(`
-[umi-plugin-ssr] 使用 ssr 插件，意味着我们只使用 umi 作为构建工具。所以：
-
-    1. 路由相关功能不工作
-    2. global.css、global.js 无效
-    3. app.js 无效
-    4. 不支持 runtimePublicPath
-  `.trim());
-  console.log();
-
   // don't generate html files
   process.env.HTML = 'none';
   // don't add route middleware
@@ -183,13 +173,6 @@ module.exports = function (api, options = {}) {
 
     webpackConfig.target('async-node');
     webpackConfig.output.libraryTarget('commonjs2');
-    console.log(webpackConfig)
-    // webpackConfig.plugins.push([
-    //   new webpack.DefinePlugin({
-    //     __isBrowser__: false
-    //   })
-    // ]);
-
     webpackConfig.output
       .chunkFilename(`[name].js`);
 
