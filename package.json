@@ -1,11 +1,11 @@
 {
-  "name": "umi-plugin-mpa",
+  "name": "umi-plugin-ssr",
   "version": "0.1.0",
   "description": "",
-  "repository": "umijs/umi-plugin-mpa",
+  "repository": "i5ting/umi-plugin-ssr",
   "author": {
-    "name": "chencheng",
-    "email": "sorrycc@gmail.com"
+    "name": "i5ting",
+    "email": "i5ting@126.com"
   },
   "engines": {
     "node": ">=8.0.0"
@@ -20,7 +20,8 @@
     "deasync-promise": "^1.0.1",
     "html-webpack-plugin": "^3.2.0",
     "inquirer": "^6.2.1",
-    "is-plain-object": "^2.0.4"
+    "is-plain-object": "^2.0.4",
+    "null-loader": "^0.1.1"
   },
   "devDependencies": {
     "coveralls": "^3.0.2",

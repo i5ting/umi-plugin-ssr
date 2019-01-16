@@ -2,7 +2,9 @@
 export default {
   plugins: [
     ['../../index', {
-      html: {},
+      entry: {
+        a:"./pages/index.js"
+      },
     }],
   ],
 };

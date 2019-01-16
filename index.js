@@ -55,6 +55,7 @@ module.exports = function (api, options = {}) {
   api.modifyWebpackConfig(webpackConfig => {
     // set entry
     const hmrScript = webpackConfig.entry['umi'][0];
+
     webpackConfig.entry = options.entry;
     if (!webpackConfig.entry) {
       // find entry from pages directory
@@ -138,9 +139,9 @@ module.exports = function (api, options = {}) {
             }
           })
         }
-        webpackConfig.plugins.push(
-          new HTMLWebpackPlugin(config),
-        );
+        // webpackConfig.plugins.push(
+        //   new HTMLWebpackPlugin(config),
+        // );
       }
     });
 
@@ -164,7 +165,13 @@ module.exports = function (api, options = {}) {
     return webpackConfig;
   });
 
+  function clear(rule) {
+    rule.uses.clear()
+    rule.use('null-loader').loader(require.resolve('null-loader'))
+  }
   api.chainWebpackConfig(webpackConfig => {
+    clear(webpackConfig.module.rule('css'))
+
     webpackConfig.module.rule('html')
       .test(/\.html?$/)
       .use('file-loader')

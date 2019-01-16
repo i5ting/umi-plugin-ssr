@@ -1,10 +1,10 @@
-# umi-plugin-mpa
+# umi-plugin-ssr
 
-MPA(multiple-page application) plugin for umi.
+SSR(server-side render) plugin for umi.
 
-[![NPM version](https://img.shields.io/npm/v/umi-plugin-mpa.svg?style=flat)](https://npmjs.org/package/umi-plugin-mpa)
-[![Build Status](https://img.shields.io/travis/umijs/umi-plugin-mpa.svg?style=flat)](https://travis-ci.org/umijs/umi-plugin-mpa)
-[![NPM downloads](http://img.shields.io/npm/dm/umi-plugin-mpa.svg?style=flat)](https://npmjs.org/package/umi-plugin-mpa)
+[![NPM version](https://img.shields.io/npm/v/umi-plugin-ssr.svg?style=flat)](https://npmjs.org/package/umi-plugin-ssr)
+[![Build Status](https://img.shields.io/travis/umijs/umi-plugin-ssr.svg?style=flat)](https://travis-ci.org/umijs/umi-plugin-ssr)
+[![NPM downloads](http://img.shields.io/npm/dm/umi-plugin-ssr.svg?style=flat)](https://npmjs.org/package/umi-plugin-ssr)
 
 ## Why
 
@@ -12,7 +12,7 @@ MPA(multiple-page application) plugin for umi.
 
 另外，atool-build 已停止维护。
 
-所以，为了让这些老业务能更容易地升级上来，享受新的技术栈，我们提供了 umi-plugin-mpa 来支持多页应用，把 umi 单纯作为 webpack 封装工具来使用。同时，umi 的部分功能会不可用，比如路由、global.js、global.css、app.js 等。
+所以，为了让这些老业务能更容易地升级上来，享受新的技术栈，我们提供了 umi-plugin-ssr 来支持多页应用，把 umi 单纯作为 webpack 封装工具来使用。同时，umi 的部分功能会不可用，比如路由、global.js、global.css、app.js 等。
 
 ## Features
 
@@ -31,7 +31,7 @@ MPA(multiple-page application) plugin for umi.
 ## Installation
 
 ```bash
-$ yarn add umi-plugin-mpa
+$ yarn add umi-plugin-ssr
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ Config it in `.umirc.js` or `config/config.js`,
 
 ```js
 export default {
-  plugins: ['umi-plugin-mpa'],
+  plugins: ['umi-plugin-ssr'],
 };
 ```
 
@@ -49,7 +49,7 @@ with options,
 ```js
 export default {
   plugins: [
-    ['umi-plugin-mpa', options],
+    ['umi-plugin-ssr', options],
   ],
 };
 ```
@@ -102,7 +102,7 @@ export default {
 
 其中，
 
-* template 有一个[默认模板](http://github.com/umijs/umi-plugin-mpa/tree/master/templates/document.ejs)，可通过配置进行覆盖
+* template 有一个[默认模板](http://github.com/umijs/umi-plugin-ssr/tree/master/templates/document.ejs)，可通过配置进行覆盖
 * 如果有一个和 entry 文件同目录同文件名但后缀为 `.ejs` 的文件，则会用次文件作为其 template，且优先级最高
 * chunks 有一个特殊项为 `<%= page %>`，如果配置了，会被替换为当前 page 名
 
